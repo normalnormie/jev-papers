@@ -1,0 +1,29 @@
+{
+  "instructions": "Which single research topic fits this AI paper best? Judge by the main contribution described in the title and abstract, not by a method it only uses along the way.",
+  "topics": [
+    {"id": "llm_reasoning", "name": "LLM reasoning", "group": "language", "criterion": "Reasoning in language models: chain of thought, math and logic problem solving, test-time compute, planning done by the model itself."},
+    {"id": "agents", "name": "Agents and tool use", "group": "language", "criterion": "LLM agents that act over many steps: tool calling, web or computer use, memory, multi-agent systems, agent frameworks."},
+    {"id": "llm_training", "name": "LLM training", "group": "language", "criterion": "How language models are trained: pretraining data, fine-tuning, RLHF and preference optimization, scaling laws, new model architectures."},
+    {"id": "efficiency", "name": "Efficiency and systems", "group": "learning", "criterion": "Making models cheaper or faster: quantization, pruning, distillation, KV cache, serving systems, hardware, edge deployment."},
+    {"id": "retrieval", "name": "Retrieval and RAG", "group": "language", "criterion": "Retrieval augmented generation, search and ranking, embeddings for retrieval, knowledge graphs, recommender systems."},
+    {"id": "nlp", "name": "NLP and language", "group": "language", "criterion": "Classic language tasks and linguistics: translation, summarization, information extraction, sentiment, multilingual and low-resource languages."},
+    {"id": "benchmarks", "name": "Benchmarks and evaluation", "group": "trust", "criterion": "The main contribution is a benchmark, a dataset, or an evaluation method for AI models, including LLM-as-judge studies."},
+    {"id": "safety_security", "name": "Safety and security", "group": "trust", "criterion": "Attacks and defenses: jailbreaks, prompt injection, adversarial examples, backdoors, privacy leaks, hallucination detection, watermarking, deepfake detection."},
+    {"id": "society", "name": "AI and society", "group": "trust", "criterion": "Fairness and bias, ethics, policy and governance, human-AI interaction, education, studies of how people use AI."},
+    {"id": "interpretability", "name": "Interpretability", "group": "learning", "criterion": "Explaining what happens inside a model: mechanistic interpretability, probing, feature attribution, sparse autoencoders, explainable AI methods."},
+    {"id": "vision_recognition", "name": "Visual recognition", "group": "perception", "criterion": "Perception in 2D images: classification, detection, segmentation, tracking, pose, OCR, remote sensing and aerial imagery."},
+    {"id": "generation", "name": "Image and video generation", "group": "perception", "criterion": "Generating or editing images and video: diffusion and flow models, text-to-image, text-to-video, style transfer, restoration and super-resolution."},
+    {"id": "vision_3d", "name": "3D vision", "group": "perception", "criterion": "3D reconstruction and scene representation: NeRF, Gaussian splatting, depth, point clouds, SLAM, avatars and human body capture."},
+    {"id": "multimodal", "name": "Multimodal models", "group": "perception", "criterion": "Vision-language models and models over several modalities: visual question answering, video understanding with language, multimodal LLMs."},
+    {"id": "medical", "name": "Medicine and biology", "group": "applied", "criterion": "Healthcare and life science applications: medical imaging, clinical text, diagnosis, drug discovery, proteins, genomics."},
+    {"id": "robotics", "name": "Robotics", "group": "applied", "criterion": "Physical robots and embodied agents: manipulation, locomotion, navigation, vision-language-action models, sim-to-real."},
+    {"id": "driving", "name": "Autonomous driving", "group": "applied", "criterion": "Self-driving and traffic: driving perception and planning, trajectory prediction, driving simulation, intelligent transportation."},
+    {"id": "reinforcement_learning", "name": "Reinforcement learning", "group": "learning", "criterion": "Reinforcement learning as the subject itself: policy optimization, offline RL, bandits, exploration, control, games. Not RL used only to fine-tune an LLM."},
+    {"id": "theory", "name": "Theory and optimization", "group": "learning", "criterion": "Mathematical results about learning: generalization bounds, optimization algorithms and convergence, statistical learning theory, probabilistic inference."},
+    {"id": "graphs_tabular", "name": "Graphs and tabular", "group": "learning", "criterion": "Learning on structured data: graph neural networks, tabular models, anomaly detection, causal discovery, classic machine learning on tables."},
+    {"id": "time_series", "name": "Time series", "group": "learning", "criterion": "Forecasting and sequence sensing: time series models, spatio-temporal prediction, sensor and wearable signals, EEG and other physiological signals."},
+    {"id": "science", "name": "AI for science", "group": "applied", "criterion": "Physical science and engineering: physics-informed networks, PDE solvers, chemistry, materials, climate and weather, quantum computing."},
+    {"id": "speech_audio", "name": "Speech and audio", "group": "perception", "criterion": "Sound: speech recognition, text to speech, speaker tasks, audio understanding, music generation and analysis."},
+    {"id": "code", "name": "Code", "group": "language", "criterion": "Code generation, program repair, software engineering with LLMs, formal verification, program synthesis."}
+  ]
+}

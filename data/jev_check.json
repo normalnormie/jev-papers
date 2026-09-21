@@ -1,0 +1,34 @@
+{
+ "model": "typesafe/jev-1.13-20260917",
+ "requests": [
+  {
+   "papers": 4,
+   "ms": 435.4,
+   "cost": 0.000240492,
+   "input_tokens": 5726
+  },
+  {
+   "papers": 4,
+   "ms": 188.8,
+   "cost": 0.000239358,
+   "input_tokens": 5699
+  },
+  {
+   "papers": 1,
+   "ms": 230.7,
+   "cost": 7.0182e-05,
+   "input_tokens": 1671
+  }
+ ],
+ "labels": {
+  "2609.21948": "robotics",
+  "2609.21906": "medical",
+  "2609.22086": "agents",
+  "2609.21926": "theory",
+  "2609.21789": "speech_audio",
+  "2609.21208": "code",
+  "2609.21938": "vision_3d",
+  "2609.21941": "safety_security"
+ },
+ "total_cost_batched": 0.00047985
+}

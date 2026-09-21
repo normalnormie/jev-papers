@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jev Papers: 1,000 AI papers sorted by one decision each</title>
+<meta name="description" content="A topic map of recent arXiv AI papers. Every paper was classified into one of 24 topics by a single Jev decision.">
+<style>
+:root {
+  --ink: #0f0e0c; --ink2: #171512; --ink3: #211e1a; --rule: #2e2a24;
+  --paper: #efe7d6; --dim: #a39a88; --faint: #6f675a; --hot: #ff6a3d;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); color-scheme: dark; }
+body { margin: 0; font: 15px/1.45 var(--sans); color: var(--paper); -webkit-font-smoothing: antialiased;
+  background: radial-gradient(1200px 500px at 12% -10%, #241d14 0%, transparent 60%), var(--ink); }
+a { color: inherit; }
+.wrap { max-width: 1560px; margin: 0 auto; padding: 36px 40px 56px; }
+
+/* masthead */
+header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px 48px; align-items: end; padding-bottom: 26px; border-bottom: 1px solid var(--rule); }
+.eyebrow span { white-space: nowrap; }
+.eyebrow { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 500 11.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--hot); margin: 0 0 16px; }
+h1 { font: 400 clamp(32px, 4.1vw, 60px)/1.02 var(--serif); letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+h1 em { font-style: italic; color: var(--hot); }
+.lede { color: var(--dim); max-width: 62ch; margin: 16px 0 0; font-size: 15.5px; }
+.stats { display: grid; grid-template-columns: repeat(4, auto); gap: 0; margin: 0; border: 1px solid var(--rule); border-radius: 4px; background: var(--ink2); }
+.stats div { padding: 14px 22px 13px; border-left: 1px solid var(--rule); min-width: 0; }
+.stats div:first-child { border-left: 0; }
+.stats dt { font: 500 10.5px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; white-space: nowrap; }
+.stats dd { margin: 0; font: 400 30px/1 var(--serif); letter-spacing: -.01em; white-space: nowrap; }
+.stats small { display: block; margin-top: 7px; font: 12px/1.3 var(--sans); color: var(--dim); white-space: nowrap; }
+
+/* layout */
+main { display: grid; grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr); gap: 28px; margin-top: 26px; align-items: start; }
+.maphead, .listhead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 12px; min-height: 22px; }
+.label { font: 500 11px/1.2 var(--mono); letter-spacing: .13em; text-transform: uppercase; color: var(--faint); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--dim); }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; background: hsl(var(--h) 62% 58%); }
+
+/* treemap */
+#map { position: relative; width: 100%; height: clamp(540px, calc(100vh - 400px), 780px); }
+.tile { position: absolute; padding: 0; border: 0; margin: 0; font: inherit; color: var(--paper); text-align: left; cursor: pointer; background: none; }
+.tile > span { position: absolute; inset: 2px; border-radius: 3px; padding: 9px 11px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+  background: linear-gradient(160deg, hsl(var(--h) 38% 21%), hsl(var(--h) 42% 14%)); box-shadow: inset 0 0 0 1px hsl(var(--h) 45% 32% / .55); transition: filter .15s, box-shadow .15s, opacity .15s; }
+.tile:hover > span { filter: brightness(1.22); }
+.tile:focus-visible { outline: none; }
+.tile:focus-visible > span, .tile.on > span { box-shadow: inset 0 0 0 2px hsl(var(--h) 85% 70%); filter: brightness(1.3); }
+#map.picked .tile:not(.on) > span { opacity: .42; }
+.tile.empty > span { opacity: .16 !important; }
+.tile b { font: 600 var(--fs, 13px)/1.15 var(--sans); letter-spacing: -.005em; color: hsl(var(--h) 70% 88%); overflow-wrap: break-word; hyphens: auto; }
+.tile .n { display: flex; align-items: baseline; gap: 7px; font: 400 var(--ns, 26px)/1 var(--serif); }
+.tile .n small { font: 11px/1 var(--mono); color: hsl(var(--h) 40% 72%); }
+.tile .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: hsl(var(--h) 30% 10%); }
+.tile .bar u { display: block; height: 100%; background: hsl(var(--h) 80% 64%); }
+.tile.s b { --fs: 10.5px; } .tile.s .n { --ns: 17px; } .tile.s > span { padding: 6px 7px; } .tile.s .n small { display: none; }
+/* narrow screens: the same tiles as a two-column grid of meters, a treemap this small is unreadable */
+#map.bars { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+#map.bars .tile { position: relative; height: 50px; }
+#map.bars .tile > span { inset: 0; justify-content: space-between; padding: 0 10px 2px; flex-direction: row; align-items: center; gap: 8px; background: hsl(var(--h) 30% 12%); }
+#map.bars .fill { position: absolute; left: 0; top: 0; bottom: 0; background: linear-gradient(90deg, hsl(var(--h) 42% 20%), hsl(var(--h) 46% 27%)); }
+#map.bars b { position: relative; --fs: 12.5px; line-height: 1.12; hyphens: manual; }
+#map.bars .n { position: relative; --ns: 21px; }
+#map.bars .n small { display: none; }
+.mapnote { margin: 10px 0 0; font-size: 12.5px; color: var(--faint); }
+
+/* list */
+.panel { background: var(--ink2); border: 1px solid var(--rule); border-radius: 4px; display: flex; flex-direction: column; height: clamp(540px, calc(100vh - 400px), 780px); }
+.search { display: flex; align-items: center; gap: 10px; padding: 0 14px; border-bottom: 1px solid var(--rule); }
+.search svg { flex: none; color: var(--faint); }
+#q { flex: 1; min-width: 0; height: 48px; background: none; border: 0; outline: 0; color: var(--paper); font: 15px var(--sans); }
+#q::placeholder { color: var(--faint); }
+.search:focus-within { box-shadow: inset 0 -2px 0 var(--hot); }
+.scope { padding: 14px 16px 13px; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: baseline; }
+.scope h2 { margin: 0; font: 400 23px/1.15 var(--serif); }
+.scope h2 i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 9px; background: hsl(var(--h) 62% 58%); }
+.scope p { grid-column: 1 / -1; margin: 2px 0 0; font-size: 13px; color: var(--dim); }
+.scope .count { font: 12px var(--mono); color: var(--dim); white-space: nowrap; }
+#reset { background: none; border: 1px solid var(--rule); color: var(--dim); border-radius: 3px; font: 12px var(--sans); padding: 3px 9px; cursor: pointer; margin-left: 10px; }
+#reset:hover { color: var(--paper); border-color: var(--faint); }
+#list { overflow-y: auto; flex: 1; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+details { border-bottom: 1px solid var(--rule); }
+summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 76px; gap: 6px 16px; padding: 13px 16px 12px; }
+summary::-webkit-details-marker { display: none; }
+summary:hover, details[open] summary { background: var(--ink3); }
+.t { font: 600 14.5px/1.32 var(--sans); letter-spacing: -.003em; }
+.t a { text-decoration: none; }
+.t a:hover { text-decoration: underline; text-decoration-color: var(--hot); text-underline-offset: 3px; }
+.m { grid-column: 1; font-size: 12.5px; color: var(--dim); display: flex; flex-wrap: wrap; gap: 3px 10px; align-items: center; }
+.m .chip { color: hsl(var(--h) 65% 76%); white-space: nowrap; }
+.m .chip i { display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin-right: 5px; background: hsl(var(--h) 62% 58%); }
+.m .alt { color: var(--faint); white-space: nowrap; }
+.m .id { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+.j { font: 11px var(--mono); padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+.j.ok { color: #9fd8a4; background: #9fd8a41a; } .j.no { color: #f2c46b; background: #f2c46b1a; }
+.c { grid-column: 2; grid-row: 1 / span 2; text-align: right; align-self: start; }
+.c strong { display: block; font: 500 17px/1 var(--mono); letter-spacing: -.02em; }
+.c span { display: block; height: 4px; border-radius: 2px; background: var(--rule); margin-top: 7px; overflow: hidden; }
+.c u { display: block; height: 100%; background: var(--paper); border-radius: 2px; }
+.c.lo strong { color: #f2c46b; } .c.lo u { background: #f2c46b; }
+.c em { display: block; margin-top: 5px; font: normal 9.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.abs { margin: 0; padding: 0 16px 15px; font-size: 13.5px; line-height: 1.55; color: #cfc6b4; max-width: 70ch; }
+.none, #more { padding: 22px 16px; color: var(--dim); font-size: 14px; }
+#more { display: block; width: 100%; background: none; border: 0; cursor: pointer; text-align: center; font: 13px var(--sans); }
+#more:hover { color: var(--paper); }
+
+footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; font-size: 13px; color: var(--faint); }
+footer p { margin: 0; max-width: 95ch; }
+footer b { color: var(--dim); font-weight: 500; }
+
+@media (max-width: 1180px) {
+  header { grid-template-columns: 1fr; align-items: start; }
+  .stats { justify-self: start; }
+}
+@media (max-width: 900px) {
+  .wrap { padding: 22px 16px 40px; }
+  main { grid-template-columns: 1fr; gap: 22px; }
+  .panel { height: auto; }
+  .eyebrow { font-size: 10.5px; letter-spacing: .1em; }
+  #list { overflow: visible; }
+  .stats { grid-template-columns: 1fr 1fr; justify-self: stretch; }
+  .stats div { padding: 12px 14px; }
+  .stats div:nth-child(3) { border-left: 0; }
+  .stats div:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .stats dd { font-size: 25px; }
+  .stats small { white-space: normal; }
+  .legend { display: none; }
+  .lede { font-size: 14.5px; }
+  .tile > span { padding: 6px 7px; }
+  summary { grid-template-columns: minmax(0, 1fr) 58px; gap: 6px 12px; padding: 12px 14px; }
+  .c strong { font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow" id="eyebrow"><span>arXiv cs.AI cs.LG cs.CL cs.CV</span></p>
+      <h1><span id="hn">1,000</span> AI papers, <em>one decision</em> each.</h1>
+      <p class="lede">Every paper got a single 24-way choice from Jev, a decision model that returns a label and a probability instead of text. Tile area is the number of papers. Pick a topic, or search everything.</p>
+    </div>
+    <dl class="stats" id="stats"></dl>
+  </header>
+
+  <main>
+    <section aria-label="Topic map">
+      <div class="maphead"><span class="label">Topic map</span><span class="legend" id="legend"></span></div>
+      <div id="map"></div>
+      <p class="mapnote">The line under each tile is the share of its papers Jev labeled with confidence 0.90 or higher.</p>
+    </section>
+    <section aria-label="Papers">
+      <div class="listhead"><span class="label">Papers</span><span class="label" id="sortnote"></span></div>
+      <div class="panel">
+        <label class="search">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.6"/><path d="m10.6 10.6 3.6 3.6" stroke-linecap="round"/></svg>
+          <input id="q" type="search" placeholder="Search titles, authors, abstracts" autocomplete="off" spellcheck="false" aria-label="Search papers">
+        </label>
+        <div class="scope" id="scope"></div>
+        <div id="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p id="foot"></p>
+    <p>Open source, MIT. Inspired by <a href="https://x.com/nutlope/status/2100426999546184123">@nutlope's 1,018 paper build</a>.</p>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var D = window.JEV_PAPERS;
+  var $ = function (id) { return document.getElementById(id); };
+  if (!D) { $("list").innerHTML = '<p class="none">No data yet. Run fetch.py and classify.py, they write site/data.js.</p>'; return; }
+
+  var HUES = [32, 172, 256, 96, 346, 208, 58, 300];
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); };
+  // soft hyphens for long words in narrow tiles; browsers without a hyphenation dictionary would break mid-syllable
+  var shy = function (s) { return s.replace(/([a-z]{5,})(zation|ment|ability|ation|nition)\b/gi, "$1&shy;$2"); };
+  var fmt = function (n) { return n.toLocaleString("en-US"); };
+  var groups = [];
+  D.topics.forEach(function (t) { if (groups.indexOf(t.group) < 0) groups.push(t.group); });
+  var topic = {};
+  D.topics.forEach(function (t) { t.hue = HUES[groups.indexOf(t.group) % HUES.length]; t.papers = []; topic[t.id] = t; });
+  D.papers.forEach(function (p) {
+    if (topic[p.topic]) topic[p.topic].papers.push(p);
+    p.hay = (p.title + " " + p.authors.join(" ") + " " + p.abstract + " " + p.id).toLowerCase();
+  });
+  D.topics.forEach(function (t) { t.sure = t.papers.filter(function (p) { return p.conf >= 0.9; }).length; });
+
+  // masthead numbers, all from the run that produced data.js
+  var S = D.summary, E = D.eval;
+  var dates = D.papers.map(function (p) { return p.date; }).sort();
+  $("hn").textContent = fmt(S.papers);
+  document.title = "Jev Papers: " + fmt(S.papers) + " AI papers sorted by one decision each";
+  $("eyebrow").innerHTML = "<span>arXiv cs.AI cs.LG cs.CL cs.CV</span><span>submitted " + esc(dates[0]) + " to " + esc(dates[dates.length - 1]) + "</span>";
+  var cells = [
+    ["Jev cost, all papers", "$" + S.total_cost.toFixed(4), "$" + S.cost_per_paper.toFixed(6) + " per paper"],
+    ["Median per paper", Math.round(S.median_ms_per_paper) + " ms", "p95 " + Math.round(S.p95_ms_per_paper) + " ms, " + S.batch + " papers per request"]
+  ];
+  if (E) {
+    cells.push(["Agrees with LLM judge", Math.round(E.agreement * 100) + "%", Math.round(E.agreement_when_jev_confident * 100) + "% when Jev is 0.90+ sure"]);
+    cells.push(["Judge cost per paper", "$" + E.judge_cost_per_paper.toFixed(4), Math.round(E.judge_cost_per_paper / E.jev_cost_per_paper) + "x Jev, " + Math.round(E.judge_median_ms) + " ms median"]);
+  }
+  $("stats").innerHTML = cells.map(function (c) { return "<div><dt>" + c[0] + "</dt><dd>" + c[1] + "</dd><small>" + c[2] + "</small></div>"; }).join("");
+  $("legend").innerHTML = groups.map(function (g, i) { return '<span style="--h:' + HUES[i % HUES.length] + '"><i></i>' + esc(g) + "</span>"; }).join("");
+  $("foot").innerHTML = "<b>" + esc(S.model) + "</b> labeled " + fmt(S.papers) + " papers in " + S.requests + " requests." +
+    (E ? " The judge is <b>" + esc(E.judge_model) + "</b> on a seeded random sample of " + E.judged + " papers, same topics and criteria. Papers in that sample carry a judge badge." : "");
+
+  // squarified treemap, groups first, then topics inside each group
+  function squarify(items, x, y, w, h) {
+    var total = items.reduce(function (s, i) { return s + i.v; }, 0), out = [], row = [], r = { x: x, y: y, w: w, h: h };
+    var scale = w * h / (total || 1);
+    function worst(row, side) {
+      var s = 0, mx = 0, mn = Infinity;
+      row.forEach(function (a) { s += a.a; mx = Math.max(mx, a.a); mn = Math.min(mn, a.a); });
+      return Math.max(side * side * mx / (s * s), s * s / (side * side * mn));
+    }
+    function flush() {
+      var s = row.reduce(function (t, a) { return t + a.a; }, 0);
+      if (!row.length || !s) return;
+      if (r.w >= r.h) { var cw = s / r.h, cy = r.y; row.forEach(function (a) { out.push({ item: a.item, x: r.x, y: cy, w: cw, h: a.a / cw }); cy += a.a / cw; }); r.x += cw; r.w -= cw; }
+      else { var rh = s / r.w, cx = r.x; row.forEach(function (a) { out.push({ item: a.item, x: cx, y: r.y, w: a.a / rh, h: rh }); cx += a.a / rh; }); r.y += rh; r.h -= rh; }
+      row = [];
+    }
+    items.slice().sort(function (a, b) { return b.v - a.v; }).forEach(function (item) {
+      var a = { item: item, a: item.v * scale }, side = Math.min(r.w, r.h);
+      if (row.length && worst(row.concat([a]), side) > worst(row, side)) flush();
+      row.push(a);
+    });
+    flush();
+    return out;
+  }
+
+  var state = { topic: (location.hash.match(/topic=([\w]+)/) || [])[1] || "", q: "", shown: 60 };
+  if (!topic[state.topic]) state.topic = "";
+  var map = $("map");
+
+  function matches() {
+    var words = state.q.toLowerCase().split(/\s+/).filter(Boolean);
+    return D.papers.filter(function (p) { return words.every(function (w) { return p.hay.indexOf(w) >= 0; }); });
+  }
+
+  function drawMap(found) {
+    var W = map.clientWidth, H = map.clientHeight, hit = {};
+    found.forEach(function (p) { hit[p.topic] = (hit[p.topic] || 0) + 1; });
+    var gs = groups.map(function (g) {
+      var ts = D.topics.filter(function (t) { return t.group === g && t.papers.length; });
+      return { ts: ts, v: ts.reduce(function (s, t) { return s + t.papers.length; }, 0) };
+    }).filter(function (g) { return g.v; });
+    var html = "", bars = W < 560;
+    map.classList.toggle("bars", bars);
+    map.classList.toggle("picked", !!state.topic);
+    if (bars) {
+      var max = Math.max.apply(null, D.topics.map(function (t) { return t.papers.length; }));
+      map.innerHTML = D.topics.slice().sort(function (a, b) { return b.papers.length - a.papers.length; }).map(function (t) {
+        var n = t.papers.length;
+        return '<button class="tile' + (t.id === state.topic ? " on" : "") + (state.q && !hit[t.id] ? " empty" : "") + '" data-id="' + t.id + '" style="--h:' + t.hue +
+          '" aria-pressed="' + (t.id === state.topic) + '"><span><i class="fill" style="width:' + (100 * n / max).toFixed(1) + '%"></i><b>' + esc(t.name) + '</b><span class="n">' +
+          (state.q ? (hit[t.id] || 0) : n) + '</span><span class="bar"><u style="width:' + (100 * t.sure / (n || 1)).toFixed(0) + '%"></u></span></span></button>';
+      }).join("");
+      return;
+    }
+    squarify(gs, 0, 0, W, H).forEach(function (g) {
+      squarify(g.item.ts.map(function (t) { return { t: t, v: t.papers.length }; }), g.x, g.y, g.w, g.h).forEach(function (c) {
+        var t = c.item.t, n = t.papers.length, small = c.w < 92 || c.h < 62, m = Math.min(c.w, c.h);
+        var fs = Math.max(11, Math.min(17, m / 8.5)), ns = Math.max(17, Math.min(44, m / 3.6));
+        var count = state.q ? (hit[t.id] || 0) + "<small>of " + n + "</small>" : n + "<small>" + (100 * n / D.papers.length).toFixed(1) + "%</small>";
+        html += '<button class="tile' + (small ? " s" : "") + (t.id === state.topic ? " on" : "") + (state.q && !hit[t.id] ? " empty" : "") +
+          '" data-id="' + t.id + '" style="--h:' + t.hue + ";--fs:" + fs.toFixed(1) + "px;--ns:" + ns.toFixed(0) + "px;left:" + c.x + "px;top:" + c.y + "px;width:" + c.w + "px;height:" + c.h + 'px" title="' +
+          esc(t.name + ": " + n + " papers, " + t.sure + " with confidence 0.90 or higher. " + t.criterion) + '" aria-pressed="' + (t.id === state.topic) + '"><span><b>' + shy(esc(t.name)) +
+          '</b><span class="n">' + count + '</span><span class="bar"><u style="width:' + (100 * t.sure / n).toFixed(0) + '%"></u></span></span></button>';
+      });
+    });
+    map.innerHTML = html;
+  }
+
+  function row(p) {
+    var t = topic[p.topic] || { name: p.topic, hue: 0 }, lo = p.conf < 0.9;
+    var meta = "";
+    if (!state.topic) meta += '<span class="chip" style="--h:' + t.hue + '"><i></i>' + esc(t.name) + "</span>";
+    if (lo && p.alt && topic[p.alt]) meta += '<span class="alt">or ' + esc(topic[p.alt].name) + " " + p.altp.toFixed(2) + "</span>";
+    if (p.judge) meta += p.judge === p.topic ? '<span class="j ok">judge agrees</span>' : '<span class="j no">judge: ' + esc((topic[p.judge] || { name: p.judge }).name) + "</span>";
+    meta += "<span>" + esc(p.authors.join(", ")) + '</span><span class="id">' + esc(p.id) + " · " + esc(p.date) + "</span>";
+    return "<details><summary><span class=\"t\"><a href=\"" + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a></span><span class="c' + (lo ? " lo" : "") + '"><strong>' + p.conf.toFixed(2) +
+      '</strong><span><u style="width:' + Math.round(p.conf * 100) + '%"></u></span><em>Jev conf</em></span><span class="m">' + meta + '</span></summary><p class="abs">' + esc(p.abstract) + "</p></details>";
+  }
+
+  function draw() {
+    var found = matches(), t = topic[state.topic];
+    var rows = t ? found.filter(function (p) { return p.topic === t.id; }) : found;
+    if (t) rows = rows.slice().sort(function (a, b) { return b.conf - a.conf; });
+    drawMap(found);
+    var sure = rows.filter(function (p) { return p.conf >= 0.9; }).length;
+    $("scope").innerHTML = "<h2>" + (t ? '<i style="--h:' + t.hue + '"></i>' + esc(t.name) : "All topics") + '</h2><span class="count">' + fmt(rows.length) + (rows.length === 1 ? " paper" : " papers") +
+      (t ? '<button id="reset" type="button">All topics</button>' : "") + "</span><p>" +
+      (t ? esc(t.criterion) : "Newest first. Open a paper for its abstract, click a tile to narrow down.") +
+      (rows.length ? " Jev was 0.90 or more sure on " + sure + " of " + rows.length + "." : "") + "</p>";
+    $("sortnote").textContent = t ? "Most confident first" : "Newest first";
+    $("list").innerHTML = rows.length ? rows.slice(0, state.shown).map(row).join("") +
+      (rows.length > state.shown ? '<button id="more" type="button">Show ' + Math.min(100, rows.length - state.shown) + " more of " + (rows.length - state.shown) + "</button>" : "")
+      : '<p class="none">Nothing matches "' + esc(state.q) + '"' + (t ? " in this topic." : ".") + "</p>";
+  }
+
+  function pick(id) {
+    state.topic = state.topic === id ? "" : id; state.shown = 60;
+    history.replaceState(null, "", state.topic ? "#topic=" + state.topic : location.pathname + location.search);
+    draw(); $("list").scrollTop = 0;
+    if (state.topic && map.classList.contains("bars")) $("scope").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  map.addEventListener("click", function (e) { var b = e.target.closest(".tile"); if (b) pick(b.dataset.id); });
+  document.addEventListener("click", function (e) {
+    if (e.target.id === "reset") pick(state.topic);
+    if (e.target.id === "more") { state.shown += 100; draw(); }
+  });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); state.shown = 60; draw(); });
+  var lastW = map.clientWidth, lastH = map.clientHeight;
+  new ResizeObserver(function () {
+    var w = map.clientWidth, h = map.clientHeight, bars = map.classList.contains("bars");
+    if (w === lastW && (bars || h === lastH)) return;  // in grid mode the height is ours, only width matters
+    lastW = w; lastH = h; drawMap(matches());
+  }).observe(map);
+  draw();
+})();
+</script>
+</body>
+</html>
