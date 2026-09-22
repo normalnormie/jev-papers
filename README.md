@@ -105,6 +105,10 @@ python3 test/render_check.py        # needs playwright: clicks through the page,
 
 Every number in this README can be read back from `data/classified.json` and `data/eval.json` (key `summary` in both, the per-paper rows next to it) and `data/jev_check.json`.
 
+## Laya comparison
+
+The same frozen corpus and topic rubric were also run through the local English Laya 0.3.5 model. On the seed-7 sample, Laya agrees with a low-effort `gpt-5.6-sol` judge on 30% of exact labels and 40% of top-two labels; the committed Jev labels reach 88% and 98% against that same judge. See the [full Laya benchmark](docs/laya-benchmark.md) for the method, raw artifacts, reproducibility instructions and limitations of applying Laya's default configuration to a 24-choice task.
+
 ## Why
 
 [@nutlope classified 1,018 AI research papers with Jev](https://x.com/nutlope/status/2100426999546184123) and put the result up at 1kpapers.com: $0.08 total, 256 ms median per paper, 24 topics. The pipeline code was not published, and the comparison against an LLM judge was mentioned as still running. This is an open rebuild of both: the pipeline end to end, and the eval with its raw rows. The papers, the topics and the numbers here are our own run, not his.

@@ -1,0 +1,1095 @@
+{
+ "summary": {
+  "judge_model": "gpt-5.6-sol",
+  "judge_reasoning_effort": "low",
+  "judge_transport": "codex-cli",
+  "judge_batch_calls": 1,
+  "seed": 7,
+  "sample": 100,
+  "judged": 100,
+  "agreement": 0.3,
+  "agreement_top2": 0.4,
+  "laya_confident": 4,
+  "agreement_when_laya_confident": 0.75,
+  "agreement_when_laya_unsure": 0.2812,
+  "laya_api_cost_usd": 0,
+  "laya_median_ms": 1383.4,
+  "judge_total_ms": 90268.7,
+  "judge_usage": {
+   "input_tokens": 43715,
+   "cached_input_tokens": 0,
+   "cache_write_input_tokens": 0,
+   "output_tokens": 2182,
+   "reasoning_output_tokens": 848
+  },
+  "top_disagreements": [
+   {
+    "laya": "code",
+    "judge": "vision_3d",
+    "count": 4
+   },
+   {
+    "laya": "theory",
+    "judge": "generation",
+    "count": 3
+   },
+   {
+    "laya": "llm_reasoning",
+    "judge": "safety_security",
+    "count": 3
+   },
+   {
+    "laya": "code",
+    "judge": "generation",
+    "count": 3
+   },
+   {
+    "laya": "nlp",
+    "judge": "llm_training",
+    "count": 2
+   },
+   {
+    "laya": "code",
+    "judge": "robotics",
+    "count": 2
+   },
+   {
+    "laya": "theory",
+    "judge": "safety_security",
+    "count": 2
+   },
+   {
+    "laya": "theory",
+    "judge": "llm_training",
+    "count": 2
+   }
+  ],
+  "jev_comparable": 100,
+  "jev_agreement_same_judge": 0.88,
+  "jev_agreement_top2_same_judge": 0.98,
+  "laya_jev_comparable_all": 1000,
+  "laya_jev_agreement_all": 0.296,
+  "jev_pick_in_laya_top2_all": 0.42,
+  "previous_judge_comparable": 100,
+  "judge_agreement_with_previous": 0.88,
+  "laya_agreement_previous_judge": 0.29,
+  "laya_agreement_top2_previous_judge": 0.41,
+  "previous_judge_model": "anthropic/claude-opus-5"
+ },
+ "judge_runs": [
+  {
+   "paper_ids": [
+    "2609.19553",
+    "2609.21960",
+    "2609.18663",
+    "2609.19812",
+    "2609.20880",
+    "2609.18321",
+    "2609.18413",
+    "2609.21492",
+    "2609.20389",
+    "2609.18481",
+    "2609.19705",
+    "2609.20581",
+    "2609.18357",
+    "2609.21813",
+    "2609.20138",
+    "2609.19088",
+    "2609.18286",
+    "2609.18460",
+    "2609.19902",
+    "2609.19872",
+    "2609.18399",
+    "2609.19209",
+    "2609.18466",
+    "2609.20457",
+    "2609.19879",
+    "2609.18359",
+    "2609.21515",
+    "2609.20511",
+    "2609.18565",
+    "2609.22083",
+    "2609.19119",
+    "2609.20769",
+    "2609.20761",
+    "2609.22048",
+    "2609.18368",
+    "2609.20565",
+    "2609.20589",
+    "2609.19815",
+    "2609.18323",
+    "2609.19107",
+    "2609.18317",
+    "2609.20481",
+    "2609.21629",
+    "2609.18597",
+    "2609.19444",
+    "2609.19873",
+    "2609.18634",
+    "2609.20412",
+    "2609.18546",
+    "2609.20538",
+    "2609.19518",
+    "2609.20501",
+    "2609.21480",
+    "2609.21017",
+    "2609.18782",
+    "2609.18511",
+    "2609.20578",
+    "2609.21880",
+    "2609.20812",
+    "2609.18836",
+    "2609.19729",
+    "2609.18489",
+    "2609.20449",
+    "2609.21158",
+    "2609.18379",
+    "2609.20509",
+    "2609.18363",
+    "2609.20732",
+    "2609.18916",
+    "2609.20095",
+    "2609.21001",
+    "2609.20359",
+    "2609.19883",
+    "2609.21362",
+    "2609.19526",
+    "2609.19990",
+    "2609.21940",
+    "2609.19961",
+    "2609.19690",
+    "2609.19476",
+    "2609.19234",
+    "2609.21412",
+    "2609.18779",
+    "2609.21108",
+    "2609.21371",
+    "2609.19213",
+    "2609.18441",
+    "2609.20548",
+    "2609.19483",
+    "2609.20341",
+    "2609.20089",
+    "2609.21676",
+    "2609.19631",
+    "2609.21212",
+    "2609.19944",
+    "2609.19437",
+    "2609.20677",
+    "2609.22064",
+    "2609.21887",
+    "2609.20151"
+   ],
+   "ms": 90268.7,
+   "usage": {
+    "input_tokens": 43715,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2182,
+    "reasoning_output_tokens": 848
+   }
+  }
+ ],
+ "sample": [
+  {
+   "id": "2609.19553",
+   "judge": "llm_training",
+   "laya": "nlp",
+   "laya_confidence": 0.7167,
+   "jev": "llm_training",
+   "jev_confidence": 0.93,
+   "title": "From Parameters to Behaviors: A Survey of Model Fusion for Large Language Models"
+  },
+  {
+   "id": "2609.21960",
+   "judge": "generation",
+   "laya": "theory",
+   "laya_confidence": 0.4664,
+   "jev": "generation",
+   "jev_confidence": 0.55,
+   "title": "Schedule optimization for tau-leaping in masked discrete diffusion"
+  },
+  {
+   "id": "2609.18663",
+   "judge": "robotics",
+   "laya": "code",
+   "laya_confidence": 0.6896,
+   "jev": "robotics",
+   "jev_confidence": 0.58,
+   "title": "VLA-ULAP: Interleaving Cloud VLA Calls with Ultra-Lightweight Local Action Prediction at the Edge"
+  },
+  {
+   "id": "2609.19812",
+   "judge": "multimodal",
+   "laya": "nlp",
+   "laya_confidence": 0.3606,
+   "jev": "multimodal",
+   "jev_confidence": 0.96,
+   "title": "Absence is Presence: Understanding Visual Scene Negative Events Under Safety Cognitive Constraint"
+  },
+  {
+   "id": "2609.20880",
+   "judge": "science",
+   "laya": "science",
+   "laya_confidence": 0.5507,
+   "jev": "reinforcement_learning",
+   "jev_confidence": 0.64,
+   "title": "Reinforcement learning for post-coronagraphic wavefront control"
+  },
+  {
+   "id": "2609.18321",
+   "judge": "llm_training",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4181,
+   "jev": "llm_training",
+   "jev_confidence": 0.41,
+   "title": "Trajectory Learnability for Offline On-Policy Distillation with Imperfect Teachers"
+  },
+  {
+   "id": "2609.18413",
+   "judge": "vision_recognition",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.3717,
+   "jev": "vision_recognition",
+   "jev_confidence": 0.77,
+   "title": "Vocabulary-Guided Gait Recognition"
+  },
+  {
+   "id": "2609.21492",
+   "judge": "llm_reasoning",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.9959,
+   "jev": "llm_reasoning",
+   "jev_confidence": 1.0,
+   "title": "LogicTrack: Auditing Reasoning Trajectories of Large Language Models with Formal Logic Solvers"
+  },
+  {
+   "id": "2609.20389",
+   "judge": "reinforcement_learning",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.5353,
+   "jev": "reinforcement_learning",
+   "jev_confidence": 1.0,
+   "title": "Model-based Bootstrap for Offline Policy Evaluation in Tabular Reinforcement Learning"
+  },
+  {
+   "id": "2609.18481",
+   "judge": "medical",
+   "laya": "theory",
+   "laya_confidence": 0.4631,
+   "jev": "medical",
+   "jev_confidence": 0.59,
+   "title": "Hyperbolic Graph Representation Learning for Differential Diagnosis on Biomedical Knowledge Graphs"
+  },
+  {
+   "id": "2609.19705",
+   "judge": "safety_security",
+   "laya": "safety_security",
+   "laya_confidence": 0.5315,
+   "jev": "safety_security",
+   "jev_confidence": 0.9,
+   "title": "SoK: Trading Agents or Market Crashers? Dissecting Robustness and Security Failures in Academic Financial LLM Trading Schemes"
+  },
+  {
+   "id": "2609.20581",
+   "judge": "generation",
+   "laya": "theory",
+   "laya_confidence": 0.5586,
+   "jev": "generation",
+   "jev_confidence": 0.58,
+   "title": "Limits of Confidence in Diffusion"
+  },
+  {
+   "id": "2609.18357",
+   "judge": "safety_security",
+   "laya": "safety_security",
+   "laya_confidence": 0.6694,
+   "jev": "safety_security",
+   "jev_confidence": 0.99,
+   "title": "Market Signal Injection: Adversarial Context Manipulation of LLM Pricing Agents"
+  },
+  {
+   "id": "2609.21813",
+   "judge": "theory",
+   "laya": "theory",
+   "laya_confidence": 0.4611,
+   "jev": "theory",
+   "jev_confidence": 0.46,
+   "title": "How Many Posterior Samples? Calibrated Stopping for Adaptive Sensing"
+  },
+  {
+   "id": "2609.20138",
+   "judge": "time_series",
+   "laya": "theory",
+   "laya_confidence": 0.4755,
+   "jev": "science",
+   "jev_confidence": 0.68,
+   "title": "Fast-varying Natural Frequencies and Damping Ratio Identification for Linear Time-Varying System"
+  },
+  {
+   "id": "2609.19088",
+   "judge": "benchmarks",
+   "laya": "benchmarks",
+   "laya_confidence": 0.4561,
+   "jev": "benchmarks",
+   "jev_confidence": 0.94,
+   "title": "MUSE: Benchmarking Large Vision-Language Models on Multi-Modal Understanding in Situated Education"
+  },
+  {
+   "id": "2609.18286",
+   "judge": "llm_reasoning",
+   "laya": "nlp",
+   "laya_confidence": 0.5653,
+   "jev": "llm_reasoning",
+   "jev_confidence": 0.97,
+   "title": "What Counts as Strategic Reasoning? A Systematic Mapping of Chess Research on Humans, Engines, and Language Models"
+  },
+  {
+   "id": "2609.18460",
+   "judge": "safety_security",
+   "laya": "theory",
+   "laya_confidence": 0.278,
+   "jev": "agents",
+   "jev_confidence": 0.68,
+   "title": "Collective Loss of Control in LLM Agent Systems: An Epidemic Account of Mutation, Contagion, and Recovery"
+  },
+  {
+   "id": "2609.19902",
+   "judge": "theory",
+   "laya": "science",
+   "laya_confidence": 0.8691,
+   "jev": "benchmarks",
+   "jev_confidence": 0.39,
+   "title": "Self-Replicating Neural Cellular Automata: Quantifying Emergent Phenotypic and Genotypic Diversity in an OpenEnded Substrate"
+  },
+  {
+   "id": "2609.19872",
+   "judge": "vision_3d",
+   "laya": "code",
+   "laya_confidence": 0.3524,
+   "jev": "vision_3d",
+   "jev_confidence": 0.93,
+   "title": "PART: Learning 3D Part Assembly and Retrieval with Transformers"
+  },
+  {
+   "id": "2609.18399",
+   "judge": "vision_recognition",
+   "laya": "nlp",
+   "laya_confidence": 0.365,
+   "jev": "vision_recognition",
+   "jev_confidence": 0.99,
+   "title": "A Non-Linear Neuron Based Detection of Isolated Pixels in Binary and Grayscale Images using Contrast Sensitive Receptive Fields"
+  },
+  {
+   "id": "2609.19209",
+   "judge": "retrieval",
+   "laya": "nlp",
+   "laya_confidence": 0.4842,
+   "jev": "retrieval",
+   "jev_confidence": 0.95,
+   "title": "Generative Query Suggestion via Intent Coverage and Query-Level Credit Assignment"
+  },
+  {
+   "id": "2609.18466",
+   "judge": "generation",
+   "laya": "theory",
+   "laya_confidence": 0.4032,
+   "jev": "generation",
+   "jev_confidence": 1.0,
+   "title": "Spatially Adaptive Noise Injection"
+  },
+  {
+   "id": "2609.20457",
+   "judge": "safety_security",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.7301,
+   "jev": "safety_security",
+   "jev_confidence": 0.98,
+   "title": "Fingerprinting Multimodal Large Language Models"
+  },
+  {
+   "id": "2609.19879",
+   "judge": "benchmarks",
+   "laya": "benchmarks",
+   "laya_confidence": 0.6584,
+   "jev": "benchmarks",
+   "jev_confidence": 1.0,
+   "title": "VākQA: A Benchmark and Evaluation Study for Telugu Spoken Factoid Question Answering"
+  },
+  {
+   "id": "2609.18359",
+   "judge": "robotics",
+   "laya": "code",
+   "laya_confidence": 0.402,
+   "jev": "robotics",
+   "jev_confidence": 0.98,
+   "title": "RecMorph: Topology-Guided Spatial Recurrence for Generalized Morphology Control"
+  },
+  {
+   "id": "2609.21515",
+   "judge": "safety_security",
+   "laya": "code",
+   "laya_confidence": 0.6383,
+   "jev": "safety_security",
+   "jev_confidence": 1.0,
+   "title": "ServeGuard: Verifiable, Bounded-Residual Confinement of Operator-Invisible Channels Without Revealing the Certified Read Factor"
+  },
+  {
+   "id": "2609.20511",
+   "judge": "llm_training",
+   "laya": "theory",
+   "laya_confidence": 0.4001,
+   "jev": "llm_training",
+   "jev_confidence": 0.76,
+   "title": "When EOS Tokens Disagree: Understanding Length Inflation in On-Policy Distillation"
+  },
+  {
+   "id": "2609.18565",
+   "judge": "science",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.4638,
+   "jev": "science",
+   "jev_confidence": 0.49,
+   "title": "Variational Quantum Transformer Architecture for Synthetic Language Generation"
+  },
+  {
+   "id": "2609.22083",
+   "judge": "agents",
+   "laya": "code",
+   "laya_confidence": 0.5316,
+   "jev": "agents",
+   "jev_confidence": 0.97,
+   "title": "MintAct: A Unified Visual Agent for Digital Environments"
+  },
+  {
+   "id": "2609.19119",
+   "judge": "vision_3d",
+   "laya": "code",
+   "laya_confidence": 0.5069,
+   "jev": "robotics",
+   "jev_confidence": 0.56,
+   "title": "Track, Articulate, Act: Generating Articulation from Casual Human Videos"
+  },
+  {
+   "id": "2609.20769",
+   "judge": "generation",
+   "laya": "code",
+   "laya_confidence": 0.4432,
+   "jev": "generation",
+   "jev_confidence": 0.96,
+   "title": "FlowSGS: Improving Flow Matching Priors for Inverse Imaging with Stochastic Interpolants"
+  },
+  {
+   "id": "2609.20761",
+   "judge": "robotics",
+   "laya": "robotics",
+   "laya_confidence": 0.3981,
+   "jev": "robotics",
+   "jev_confidence": 1.0,
+   "title": "Agile-WAM: An Agile Tactile World Action Model for Contact-Rich Robot Control"
+  },
+  {
+   "id": "2609.22048",
+   "judge": "safety_security",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4693,
+   "jev": "safety_security",
+   "jev_confidence": 0.71,
+   "title": "Available Guardrails: Certifying Selective Prediction across ML Systems"
+  },
+  {
+   "id": "2609.18368",
+   "judge": "science",
+   "laya": "theory",
+   "laya_confidence": 0.5152,
+   "jev": "science",
+   "jev_confidence": 0.66,
+   "title": "Semantic CSI Feedback for Beam Selection: When Task-Aware Embeddings from Sparse Pilots Outperform Full-Bandwidth Reconstruction"
+  },
+  {
+   "id": "2609.20565",
+   "judge": "benchmarks",
+   "laya": "medical",
+   "laya_confidence": 0.4565,
+   "jev": "benchmarks",
+   "jev_confidence": 0.92,
+   "title": "Steering the Compass: Aligning Dynamic Psychological Counseling Conversations with Cognitive Behavioral Therapy Strategies"
+  },
+  {
+   "id": "2609.20589",
+   "judge": "vision_3d",
+   "laya": "code",
+   "laya_confidence": 0.3687,
+   "jev": "vision_3d",
+   "jev_confidence": 1.0,
+   "title": "RawSLAM: Online HDR Gaussian SLAM from Linear Radiance"
+  },
+  {
+   "id": "2609.19815",
+   "judge": "vision_3d",
+   "laya": "vision_3d",
+   "laya_confidence": 0.4334,
+   "jev": "vision_3d",
+   "jev_confidence": 0.98,
+   "title": "SnapPhysics: A Physics-Aware Scene Graph from a Single View for Interactive Mixed Reality Scenes"
+  },
+  {
+   "id": "2609.18323",
+   "judge": "benchmarks",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.8137,
+   "jev": "benchmarks",
+   "jev_confidence": 0.78,
+   "title": "Can MiniMax-H3 Reason About the Physical World? An Evaluation of Omni-Modal Generative Model"
+  },
+  {
+   "id": "2609.19107",
+   "judge": "llm_training",
+   "laya": "theory",
+   "laya_confidence": 0.6256,
+   "jev": "llm_training",
+   "jev_confidence": 1.0,
+   "title": "How Model Growth, Recursion, and Boundary Operators Influence Scaling Exponents"
+  },
+  {
+   "id": "2609.18317",
+   "judge": "retrieval",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4366,
+   "jev": "retrieval",
+   "jev_confidence": 1.0,
+   "title": "Knowledge-Graph Based Augmentation versus Retrieval Augmented Generation for Cultural-Related Question Answering"
+  },
+  {
+   "id": "2609.20481",
+   "judge": "society",
+   "laya": "generation",
+   "laya_confidence": 0.3913,
+   "jev": "safety_security",
+   "jev_confidence": 0.51,
+   "title": "greCAPTCHA: Assessing Understanding as Evidence of Research Authorship Under Generative AI"
+  },
+  {
+   "id": "2609.21629",
+   "judge": "vision_recognition",
+   "laya": "theory",
+   "laya_confidence": 0.4057,
+   "jev": "vision_recognition",
+   "jev_confidence": 1.0,
+   "title": "Extending Decoupled Attention to Dense Prediction and Masked Training for Multi-Channel Images"
+  },
+  {
+   "id": "2609.18597",
+   "judge": "safety_security",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.8189,
+   "jev": "safety_security",
+   "jev_confidence": 0.37,
+   "title": "Reasoning through Evolution: Automatic Meta-path Discovery for LLM-based Fake News Detection"
+  },
+  {
+   "id": "2609.19444",
+   "judge": "medical",
+   "laya": "medical",
+   "laya_confidence": 0.7305,
+   "jev": "medical",
+   "jev_confidence": 0.96,
+   "title": "Seeing Abnormal from Normal: Glomerular Abnormality in Representations of Normal Renal Morphology"
+  },
+  {
+   "id": "2609.19873",
+   "judge": "safety_security",
+   "laya": "safety_security",
+   "laya_confidence": 0.6863,
+   "jev": "safety_security",
+   "jev_confidence": 0.99,
+   "title": "AURA: Adaptive Uncertainty-Routed Analysis for Email Threat Detection"
+  },
+  {
+   "id": "2609.18634",
+   "judge": "generation",
+   "laya": "code",
+   "laya_confidence": 0.552,
+   "jev": "vision_3d",
+   "jev_confidence": 0.78,
+   "title": "GenStream: Semantic Streaming Framework for Generative Reconstruction of Human-centric Media"
+  },
+  {
+   "id": "2609.20412",
+   "judge": "safety_security",
+   "laya": "theory",
+   "laya_confidence": 0.4833,
+   "jev": "llm_training",
+   "jev_confidence": 0.94,
+   "title": "Stress-testing Alignment Midtraining"
+  },
+  {
+   "id": "2609.18546",
+   "judge": "medical",
+   "laya": "medical",
+   "laya_confidence": 0.5405,
+   "jev": "medical",
+   "jev_confidence": 0.8,
+   "title": "STUNet-Fusion: Spatiotemporal Needle-Tip Localization in Ultrasound Video via Multi-Channel Motion Fusion"
+  },
+  {
+   "id": "2609.20538",
+   "judge": "benchmarks",
+   "laya": "safety_security",
+   "laya_confidence": 0.5276,
+   "jev": "benchmarks",
+   "jev_confidence": 0.99,
+   "title": "Refuse, Decompose, Refresh: A Claim-Safe Protocol for Closed-Loop AI Evaluation"
+  },
+  {
+   "id": "2609.19518",
+   "judge": "vision_3d",
+   "laya": "code",
+   "laya_confidence": 0.46,
+   "jev": "vision_3d",
+   "jev_confidence": 1.0,
+   "title": "AMB3R-SLAM: Kilometer-scale SLAM with Hierarchical Backend"
+  },
+  {
+   "id": "2609.20501",
+   "judge": "theory",
+   "laya": "nlp",
+   "laya_confidence": 0.4169,
+   "jev": "theory",
+   "jev_confidence": 0.98,
+   "title": "Distributionally Robust Federated Learning with Multi-Source Data"
+  },
+  {
+   "id": "2609.21480",
+   "judge": "benchmarks",
+   "laya": "code",
+   "laya_confidence": 0.758,
+   "jev": "benchmarks",
+   "jev_confidence": 0.98,
+   "title": "OpenSAL360: Open-Source Crowdsourcing Platform for Omnidirectional Video Saliency Collection"
+  },
+  {
+   "id": "2609.21017",
+   "judge": "theory",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.52,
+   "jev": "theory",
+   "jev_confidence": 1.0,
+   "title": "A Smoothed Discrepancy Principle for Random Feature Methods and Neural Networks"
+  },
+  {
+   "id": "2609.18782",
+   "judge": "theory",
+   "laya": "theory",
+   "laya_confidence": 0.5342,
+   "jev": "theory",
+   "jev_confidence": 0.57,
+   "title": "A Convergence Framework for Deep $V$-Learning: Error Propagation and Sharp Action-Gap Bounds"
+  },
+  {
+   "id": "2609.18511",
+   "judge": "driving",
+   "laya": "driving",
+   "laya_confidence": 0.5443,
+   "jev": "driving",
+   "jev_confidence": 0.99,
+   "title": "Learning from Distributed Eyes: Leveraging Collaborative Perception for Automated Model Adaptation"
+  },
+  {
+   "id": "2609.20578",
+   "judge": "driving",
+   "laya": "code",
+   "laya_confidence": 0.4644,
+   "jev": "driving",
+   "jev_confidence": 0.99,
+   "title": "NS3Learn: Transferring 5G NR Mode-2 Reception Realism from ns-3 to the Veins/SUMO Stack for Connected-Vehicle Safety Assessment"
+  },
+  {
+   "id": "2609.21880",
+   "judge": "theory",
+   "laya": "theory",
+   "laya_confidence": 0.4843,
+   "jev": "theory",
+   "jev_confidence": 1.0,
+   "title": "Near-Optimal Acceleration for Smooth $\\ell_p$ / $\\ell_q$ Nondual Convex First-Order Oracle Optimization"
+  },
+  {
+   "id": "2609.20812",
+   "judge": "benchmarks",
+   "laya": "agents",
+   "laya_confidence": 0.6813,
+   "jev": "benchmarks",
+   "jev_confidence": 0.54,
+   "title": "Quantifying Overclaiming Propensity in Frontier LLM Agents"
+  },
+  {
+   "id": "2609.18836",
+   "judge": "generation",
+   "laya": "safety_security",
+   "laya_confidence": 0.7769,
+   "jev": "generation",
+   "jev_confidence": 1.0,
+   "title": "Copy What Is Seen, Generate What Is Not: Training-Free Anomaly-Aware Video Restoration"
+  },
+  {
+   "id": "2609.19729",
+   "judge": "generation",
+   "laya": "code",
+   "laya_confidence": 0.3913,
+   "jev": "generation",
+   "jev_confidence": 1.0,
+   "title": "Recency Forcing: Bridging the Long-Horizon Gap in Autoregressive Video Generation"
+  },
+  {
+   "id": "2609.18489",
+   "judge": "science",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4487,
+   "jev": "science",
+   "jev_confidence": 0.98,
+   "title": "Butterfly Effect and the Kinetic Energy Cascade in Probabilistic Machine Learning Weather Prediction Models"
+  },
+  {
+   "id": "2609.20449",
+   "judge": "society",
+   "laya": "theory",
+   "laya_confidence": 0.5032,
+   "jev": "llm_reasoning",
+   "jev_confidence": 0.69,
+   "title": "The Organization of Inference: Information, Resource Constraints, and AI Production"
+  },
+  {
+   "id": "2609.21158",
+   "judge": "generation",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.4703,
+   "jev": "generation",
+   "jev_confidence": 0.7,
+   "title": "HMB-GAN: Hybrid Multi-Bézier GAN for Vector Shape Synthesis"
+  },
+  {
+   "id": "2609.18379",
+   "judge": "vision_recognition",
+   "laya": "benchmarks",
+   "laya_confidence": 0.4393,
+   "jev": "vision_recognition",
+   "jev_confidence": 0.53,
+   "title": "JigSync: Gauge-Resolved Synchronization for Jigsaw Reassembly under Unknown Piece Orientation"
+  },
+  {
+   "id": "2609.20509",
+   "judge": "retrieval",
+   "laya": "retrieval",
+   "laya_confidence": 0.5297,
+   "jev": "retrieval",
+   "jev_confidence": 0.94,
+   "title": "Automated Goldsmith's Mark Retrieval in Silverware"
+  },
+  {
+   "id": "2609.18363",
+   "judge": "vision_3d",
+   "laya": "vision_3d",
+   "laya_confidence": 0.6871,
+   "jev": "vision_recognition",
+   "jev_confidence": 0.78,
+   "title": "Online Multi-Camera 3D Tracking via ID Prediction over Recurrent Sparse Queries"
+  },
+  {
+   "id": "2609.20732",
+   "judge": "retrieval",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.3943,
+   "jev": "retrieval",
+   "jev_confidence": 0.9,
+   "title": "Q&A on Any Spreadsheet Requires Interpreting Its Grid Structure"
+  },
+  {
+   "id": "2609.18916",
+   "judge": "efficiency",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4783,
+   "jev": "efficiency",
+   "jev_confidence": 1.0,
+   "title": "Higher-order pruning of experts in mixture-of-experts language models"
+  },
+  {
+   "id": "2609.20095",
+   "judge": "agents",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.3091,
+   "jev": "agents",
+   "jev_confidence": 1.0,
+   "title": "A Scalable Trust Discovery Architecture for the Internet of Agents"
+  },
+  {
+   "id": "2609.21001",
+   "judge": "theory",
+   "laya": "theory",
+   "laya_confidence": 0.6001,
+   "jev": "theory",
+   "jev_confidence": 0.99,
+   "title": "On the Limits of Maximal Coding Rate Reduction for Out-of-Distribution Generalisation"
+  },
+  {
+   "id": "2609.20359",
+   "judge": "efficiency",
+   "laya": "theory",
+   "laya_confidence": 0.6322,
+   "jev": "efficiency",
+   "jev_confidence": 0.95,
+   "title": "Accelerating Sharded Data Parallelism at Scale with Federated Learning"
+  },
+  {
+   "id": "2609.19883",
+   "judge": "benchmarks",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.8284,
+   "jev": "benchmarks",
+   "jev_confidence": 0.89,
+   "title": "PetriBench: Benchmarking LLM Reasoning over Dynamic State Spaces"
+  },
+  {
+   "id": "2609.21362",
+   "judge": "llm_training",
+   "laya": "nlp",
+   "laya_confidence": 0.5113,
+   "jev": "llm_training",
+   "jev_confidence": 0.79,
+   "title": "Beyond Atomic Tokens: Factorizing Syllables for Language Model Pretraining"
+  },
+  {
+   "id": "2609.19526",
+   "judge": "code",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.5867,
+   "jev": "code",
+   "jev_confidence": 0.83,
+   "title": "Self Improvement via Fast Tree-search"
+  },
+  {
+   "id": "2609.19990",
+   "judge": "efficiency",
+   "laya": "code",
+   "laya_confidence": 0.516,
+   "jev": "efficiency",
+   "jev_confidence": 0.99,
+   "title": "QCPruner: Query-Conditioned Population Coverage for Visual Token Pruning"
+  },
+  {
+   "id": "2609.21940",
+   "judge": "agents",
+   "laya": "code",
+   "laya_confidence": 0.4808,
+   "jev": "agents",
+   "jev_confidence": 0.96,
+   "title": "AutoViewMem: Self-Configuring Orthogonal Views for Conversational Long-Term Memory"
+  },
+  {
+   "id": "2609.19961",
+   "judge": "robotics",
+   "laya": "robotics",
+   "laya_confidence": 0.6566,
+   "jev": "agents",
+   "jev_confidence": 0.63,
+   "title": "Neuro-Symbolic Agentic AI for Networked Low-Altitude UAVs"
+  },
+  {
+   "id": "2609.19690",
+   "judge": "robotics",
+   "laya": "robotics",
+   "laya_confidence": 0.5917,
+   "jev": "robotics",
+   "jev_confidence": 0.98,
+   "title": "UniExo: Unified Multi-Skill Policies for Musculoskeletal Locomotion and Co-Adaptive Exoskeleton Control"
+  },
+  {
+   "id": "2609.19476",
+   "judge": "efficiency",
+   "laya": "nlp",
+   "laya_confidence": 0.3503,
+   "jev": "efficiency",
+   "jev_confidence": 0.37,
+   "title": "Search at the Cost of Sampling: Nearly-Instant Latent Space Bayesian Optimization"
+  },
+  {
+   "id": "2609.19234",
+   "judge": "society",
+   "laya": "theory",
+   "laya_confidence": 0.4043,
+   "jev": "society",
+   "jev_confidence": 1.0,
+   "title": "The AR Fairness Metamodel: A Structured Framework for Fairness Measures"
+  },
+  {
+   "id": "2609.21412",
+   "judge": "medical",
+   "laya": "medical",
+   "laya_confidence": 0.5618,
+   "jev": "medical",
+   "jev_confidence": 0.74,
+   "title": "When Online Adaptation Hurts: Parameter-Frozen Test-Time Ensembling for Continual Medical Image Segmentation"
+  },
+  {
+   "id": "2609.18779",
+   "judge": "agents",
+   "laya": "theory",
+   "laya_confidence": 0.3723,
+   "jev": "agents",
+   "jev_confidence": 1.0,
+   "title": "CERA-MoA: Co-Evolving Routing Mechanisms with Continually Learning LLM Agents"
+  },
+  {
+   "id": "2609.21108",
+   "judge": "reinforcement_learning",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.9058,
+   "jev": "reinforcement_learning",
+   "jev_confidence": 1.0,
+   "title": "REFINEPPO: Learning Continuous Control Policies by Iterative Action Refinement"
+  },
+  {
+   "id": "2609.21371",
+   "judge": "benchmarks",
+   "laya": "benchmarks",
+   "laya_confidence": 0.4755,
+   "jev": "benchmarks",
+   "jev_confidence": 1.0,
+   "title": "RobotEQ-Video: A Video-Centric Benchmark for Social Proactive Intelligence with World-State Taxonomy"
+  },
+  {
+   "id": "2609.19213",
+   "judge": "efficiency",
+   "laya": "llm_training",
+   "laya_confidence": 0.4579,
+   "jev": "efficiency",
+   "jev_confidence": 1.0,
+   "title": "Layer-wise Curriculum Learning for Efficient LLM Compression"
+  },
+  {
+   "id": "2609.18441",
+   "judge": "reinforcement_learning",
+   "laya": "nlp",
+   "laya_confidence": 0.4457,
+   "jev": "reinforcement_learning",
+   "jev_confidence": 0.95,
+   "title": "Multitask Reinforcement Learning for Assisting Choice Model Specification"
+  },
+  {
+   "id": "2609.20548",
+   "judge": "reinforcement_learning",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.9619,
+   "jev": "reinforcement_learning",
+   "jev_confidence": 0.98,
+   "title": "Mitigating Retaliatory Algorithmic Collusion in Repeated Games"
+  },
+  {
+   "id": "2609.19483",
+   "judge": "retrieval",
+   "laya": "retrieval",
+   "laya_confidence": 0.7092,
+   "jev": "retrieval",
+   "jev_confidence": 0.8,
+   "title": "SCOUT: Sim-to-Real Text-Based Person Retrieval by Embedding-Space Prediction over Frozen Video Features"
+  },
+  {
+   "id": "2609.20341",
+   "judge": "medical",
+   "laya": "code",
+   "laya_confidence": 0.9208,
+   "jev": "generation",
+   "jev_confidence": 0.62,
+   "title": "Fast Cross-Strength Multi-Contrast Brain MRI Translation using Latent Bridge Matching"
+  },
+  {
+   "id": "2609.20089",
+   "judge": "agents",
+   "laya": "reinforcement_learning",
+   "laya_confidence": 0.7114,
+   "jev": "agents",
+   "jev_confidence": 0.97,
+   "title": "UnifiedPlayers: Enhance Tool-Integrated Reasoning in Agentic Reinforcement Learning"
+  },
+  {
+   "id": "2609.21676",
+   "judge": "benchmarks",
+   "laya": "benchmarks",
+   "laya_confidence": 0.4173,
+   "jev": "benchmarks",
+   "jev_confidence": 0.8,
+   "title": "The Spoken Wikipedia Presentation Corpus"
+  },
+  {
+   "id": "2609.19631",
+   "judge": "vision_3d",
+   "laya": "nlp",
+   "laya_confidence": 0.3674,
+   "jev": "vision_3d",
+   "jev_confidence": 0.94,
+   "title": "Instance Segmentation and Fine-grained Classification for Urban Buildings with Adaptive Region Dividing and Spatially-Supervised Contrastive Learning"
+  },
+  {
+   "id": "2609.21212",
+   "judge": "robotics",
+   "laya": "nlp",
+   "laya_confidence": 0.422,
+   "jev": "robotics",
+   "jev_confidence": 1.0,
+   "title": "Visual Navigation Transformer with Pose Attention"
+  },
+  {
+   "id": "2609.19944",
+   "judge": "graphs_tabular",
+   "laya": "llm_reasoning",
+   "laya_confidence": 0.4856,
+   "jev": "graphs_tabular",
+   "jev_confidence": 0.96,
+   "title": "MaSCoD: A Multi-Agent Framework for Structural-Context-Guided Candidate Causal Graph Generation"
+  },
+  {
+   "id": "2609.19437",
+   "judge": "theory",
+   "laya": "theory",
+   "laya_confidence": 0.6431,
+   "jev": "theory",
+   "jev_confidence": 0.66,
+   "title": "Bayesian Optimization with Rich Auxiliary Information via LLMs"
+  },
+  {
+   "id": "2609.20677",
+   "judge": "efficiency",
+   "laya": "theory",
+   "laya_confidence": 0.4199,
+   "jev": "efficiency",
+   "jev_confidence": 1.0,
+   "title": "RISC-V and machine learning: a survey"
+  },
+  {
+   "id": "2609.22064",
+   "judge": "benchmarks",
+   "laya": "benchmarks",
+   "laya_confidence": 0.408,
+   "jev": "benchmarks",
+   "jev_confidence": 0.99,
+   "title": "BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings"
+  },
+  {
+   "id": "2609.21887",
+   "judge": "medical",
+   "laya": "code",
+   "laya_confidence": 0.6764,
+   "jev": "medical",
+   "jev_confidence": 0.66,
+   "title": "Catena: A Comprehensive Software Suite for Large-Scale Connectomics"
+  },
+  {
+   "id": "2609.20151",
+   "judge": "medical",
+   "laya": "medical",
+   "laya_confidence": 0.5181,
+   "jev": "medical",
+   "jev_confidence": 1.0,
+   "title": "Ischemic Stroke Segmentation and Net Water Uptake Quantification on Multicenter Non-Contrast CT Using Supervised Target-Domain Adaptation"
+  }
+ ]
+}
